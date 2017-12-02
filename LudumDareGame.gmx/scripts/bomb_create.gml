@@ -5,7 +5,7 @@ with (instance_create(argument0, argument1, ob_bomb))
     StartY = y;
     EndX = argument2;
     EndY = argument3;
-    TimerLength = 30;
+    TimerLength = 10 + sqrt(point_distance(StartX, StartY, EndX, EndY));
     Timer = TimerLength;
     Radius = ob_controller.BombOuterRadius;
     

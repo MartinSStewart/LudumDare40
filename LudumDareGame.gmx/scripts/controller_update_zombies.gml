@@ -9,7 +9,7 @@ with (ob_controller)
         var zombie = ds_list_find_value(ZombieList, i);
         
         with (zombie)
-        {
+        {   
             var dir = point_direction(x, y, player.x, player.y);
             if (IsItem == true && IsHeld == false)
             {
@@ -23,7 +23,7 @@ with (ob_controller)
             }
             if (Hp > 0)
             {
-                var totalAccel = 0.3 * (sin(MovementTimer / 10) + 1.3);
+                var totalAccel = 0.8 * (sin(MovementTimer / 20) + 1.3);
                 
                 if (player.y - 100 > y)
                 {

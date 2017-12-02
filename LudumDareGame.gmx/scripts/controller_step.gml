@@ -3,9 +3,20 @@ with (ob_controller)
 {
     if (LevelStartTimer <= 0 && LevelStarted == false)
     {
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 30; i++)
         {
-            var newZombie = zombie_create(random(room_width), 0);
+            var newZombie = zombie_create(0, 0);
+            if (random(1) > 0.5)
+            {
+                newZombie.x = random(room_width);
+                newZombie.y = (random(1) > 0.5) * room_height;
+            }
+            else
+            {
+                newZombie.y = random(room_height);
+                newZombie.x = (random(1) > 0.5) * room_width;
+            }
+            
             ds_list_add(ZombieList, newZombie);
         }
         LevelStarted = true;
@@ -52,18 +63,20 @@ with (ob_controller)
             LevelStarted = false;
             LevelStartTimer = LevelStartTimerLength;
         }
+        var placeX = clamp(mouse_x, 32, room_width - 32);
+        var placeY = clamp(mouse_y, 32, room_height - 32);
         if (mouse_check_button_pressed(mb_left))
         {
-            controller_place_zombie(mouse_x, mouse_y);
+            controller_place_zombie(placeX, placeY);
         }
         else if (mouse_check_button(mb_left) && LastPlacedZombieX >= 0)
         {
             var distance = 33;
-            while (point_distance(LastPlacedZombieX, LastPlacedZombieY, mouse_x, mouse_y) >= distance)
+            while (point_distance(LastPlacedZombieX, LastPlacedZombieY, placeX, placeY) >= distance)
             {
                 var x0 = LastPlacedZombieX;
                 var y0 = LastPlacedZombieY;
-                var dir = point_direction(x0, y0, mouse_x, mouse_y);
+                var dir = point_direction(x0, y0, placeX, placeY);
                 controller_place_zombie(x0 + lengthdir_x(distance, dir), y0 + lengthdir_y(distance, dir));
             }
         }

@@ -27,6 +27,7 @@
     </scripts>
     <scripts name="zombie">
       <script>scripts\zombie_create.gml</script>
+      <script>scripts\fast_zombie_create.gml</script>
       <script>scripts\zombie_draw.gml</script>
     </scripts>
     <scripts name="actor">
@@ -45,13 +46,13 @@
       <script>scripts\controller_draw.gml</script>
       <script>scripts\controller_draw_hud.gml</script>
       <script>scripts\controller_update_bombs.gml</script>
+      <script>scripts\controller_set_player_hp.gml</script>
+      <script>scripts\controller_is_level_complete.gml</script>
+      <script>scripts\controller_set_zombie_hp.gml</script>
       <script>scripts\controller_move_actors.gml</script>
+      <script>scripts\controller_place_zombie.gml</script>
       <script>scripts\controller_update_zombies.gml</script>
     </scripts>
-    <script>scripts\controller_set_player_hp.gml</script>
-    <script>scripts\controller_is_level_complete.gml</script>
-    <script>scripts\controller_set_zombie_hp.gml</script>
-    <script>scripts\controller_place_zombie.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fn_default</font>

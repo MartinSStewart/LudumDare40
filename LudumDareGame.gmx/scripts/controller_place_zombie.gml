@@ -3,6 +3,7 @@ with (ob_controller)
 {
     LastPlacedZombieX = argument0;
     LastPlacedZombieY = argument1;
+    var placedWeight = 150;
     if (Player.ZombieCount > 0)
     {
         Player.ZombieCount--;
@@ -16,14 +17,14 @@ with (ob_controller)
                 zombie.IsItem = false;
                 zombie.x = argument0;
                 zombie.y = argument1;
-                zombie.Weight = 50;
+                zombie.Weight = placedWeight;
                 exit;
             }
         }
         
         var newZombie = zombie_create(argument0, argument1);
         newZombie.Hp = 0;
-        newZombie.Weight = 50;
+        newZombie.Weight = placedWeight;
         ds_list_add(ZombieList, newZombie);
     }
 }

@@ -31,13 +31,9 @@ with (ob_controller)
                 x += totalXOffset + XSpeed / iterations;
                 y += totalYOffset + YSpeed / iterations;
                 
-                x = clamp(x, Radius, room_width - Radius);
-                if (object_index == ob_zombie)
+                if (object_index != ob_zombie)
                 {
-                    y = min(y, room_height - Radius);
-                }
-                else
-                {
+                    x = clamp(x, Radius, room_width - Radius);
                     y = clamp(y, Radius, room_height - Radius);
                 }
             }
