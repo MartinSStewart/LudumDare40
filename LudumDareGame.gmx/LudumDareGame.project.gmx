@@ -10,6 +10,7 @@
     <sprite>sprites\sp_zombie</sprite>
     <sprite>sprites\sp_wall</sprite>
     <sprite>sprites\sprite3</sprite>
+    <sprite>sprites\sp_bomb</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -20,11 +21,17 @@
     <script>scripts\zombie_create.gml</script>
     <script>scripts\actor_init.gml</script>
     <script>scripts\actor_dampen_speed.gml</script>
+    <script>scripts\actor_get_collisions.gml</script>
+    <script>scripts\controller_move_actors.gml</script>
+    <script>scripts\bomb_create.gml</script>
+    <script>scripts\bomb_step.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\ob_player</object>
     <object>objects\ob_controller</object>
     <object>objects\ob_wall</object>
+    <object>objects\ob_zombie</object>
+    <object>objects\ob_bomb</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
