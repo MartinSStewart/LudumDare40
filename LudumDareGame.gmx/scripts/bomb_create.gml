@@ -7,6 +7,7 @@ with (instance_create(argument0, argument1, ob_bomb))
     EndY = argument3;
     TimerLength = 30;
     Timer = TimerLength;
+    Radius = ob_controller.BombOuterRadius;
     
     return self.id;
 }

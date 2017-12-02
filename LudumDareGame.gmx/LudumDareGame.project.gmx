@@ -11,6 +11,7 @@
     <sprite>sprites\sp_wall</sprite>
     <sprite>sprites\sprite3</sprite>
     <sprite>sprites\sp_bomb</sprite>
+    <sprite>sprites\sp_zombie_hurt</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -25,6 +26,12 @@
     <script>scripts\controller_move_actors.gml</script>
     <script>scripts\bomb_create.gml</script>
     <script>scripts\bomb_step.gml</script>
+    <script>scripts\player_draw.gml</script>
+    <script>scripts\player_throw_pos.gml</script>
+    <script>scripts\controller_draw.gml</script>
+    <script>scripts\controller_update_bombs.gml</script>
+    <script>scripts\controller_update_zombies.gml</script>
+    <script>scripts\zombie_draw.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\ob_player</object>

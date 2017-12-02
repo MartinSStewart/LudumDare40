@@ -1,4 +1,4 @@
-///actor_get_colliding(actor instance, actors)
+///actor_get_collisions(actor instance, actors)
 with (argument0)
 {
     var collisions = ds_list_create();
