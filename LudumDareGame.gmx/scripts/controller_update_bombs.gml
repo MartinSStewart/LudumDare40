@@ -7,20 +7,22 @@ with (ob_controller)
         bomb_step(bomb);
         if (bomb.Timer <= 0)
         {
-            var collisions = actor_get_collisions(bomb, ZombieList);
+            var collisions = actor_get_collisions(bomb, ZombieList, 0);
             for (var j = 0; j < ds_list_size(collisions); j++)
             {
                 var zombie = ds_list_find_value(collisions, j);
                 var distance = point_distance(bomb.x, bomb.y, zombie.x, zombie.y) + zombie.Radius;
                 if (distance < ob_controller.BombInnerRadius)
                 {
-                    zombie.Hp -= 2;
+                    controller_set_zombie_hp(zombie, -2);
                 }
                 else
                 {
-                    zombie.Hp -= 1;
+                    controller_set_zombie_hp(zombie, -1);
                 }
             }
+            
+            ds_list_destroy(collisions);
             ds_list_delete(BombList, i);
             with (bomb)
             {

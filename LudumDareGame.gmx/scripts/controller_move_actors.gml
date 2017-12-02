@@ -13,7 +13,7 @@ with (ob_controller)
         {
             var actor = ds_list_find_value(actorList, j);
         
-            var collisions = actor_get_collisions(actor, actorList);
+            var collisions = actor_get_collisions(actor, actorList, 0);
             
             var totalXOffset = 0;
             var totalYOffset = 0;
@@ -21,8 +21,9 @@ with (ob_controller)
             {
                 var collidedActor = ds_list_find_value(collisions, k);
                 var dir = point_direction(actor.x, actor.y, collidedActor.x, collidedActor.y) + 180;
-                totalXOffset += lengthdir_x(separateSpeed / iterations, dir);
-                totalYOffset += lengthdir_y(separateSpeed / iterations, dir);
+                var ratio =  2 * collidedActor.Weight / (actor.Weight + collidedActor.Weight);
+                totalXOffset += lengthdir_x(separateSpeed / iterations, dir) * ratio;
+                totalYOffset += lengthdir_y(separateSpeed / iterations, dir) * ratio;
             }
             
             with (actor)

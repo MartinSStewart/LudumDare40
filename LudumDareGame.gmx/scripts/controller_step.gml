@@ -9,50 +9,10 @@ with (ob_controller)
             ds_list_add(ZombieList, newZombie);
         }
         LevelStarted = true;
+        LastPlacedZombieX = -1;
     }
 
-    with (Player)
-    {
-        if (keyboard_check(ord("W")) != keyboard_check(ord("S")))
-        {
-            if (keyboard_check(ord("W")))
-            {
-                YSpeed -= Accel;
-            }
-            else
-            {
-                YSpeed += Accel;
-            }
-        }
-        
-        if (keyboard_check(ord("A")) != keyboard_check(ord("D")))
-        {
-            if (keyboard_check(ord("A")))
-            {
-                XSpeed -= Accel;
-            }
-            else
-            {
-                XSpeed += Accel;
-            }
-        }
-        
-        if (mouse_check_button(mb_left))
-        {
-            ThrowDistance = min(ThrowDistance + 3, ThrowDistanceMax);
-        }
-        
-        if (mouse_check_button_released(mb_left))
-        {
-            player_throw_pos(id);
-            var bomb = bomb_create(x, y, _x, _y);
-            ThrowDistance = ThrowDistanceMin;
-            ThrowCooldownTimer = ThrowCooldownTimerLength;
-            ds_list_add(ob_controller.BombList, bomb);
-        }
-        
-        ThrowCooldownTimer--;
-    }
+    player_step(Player);
     
     controller_update_bombs();
     controller_update_zombies();
@@ -65,5 +25,51 @@ with (ob_controller)
     
     controller_move_actors();
     
+    if (Player.Hp <= 0 && GameOverTimer <= 0 && keyboard_check(vk_anykey))
+    {
+        with (Player)
+        {
+            instance_destroy();
+        }
+        with (ob_zombie)
+        {
+            instance_destroy();
+        }
+        with (ob_bomb)
+        {
+            instance_destroy();
+        }
+        ds_list_destroy(BombList);
+        ds_list_destroy(ZombieList);
+        controller_init(false);
+    }
+    
+    if (LevelComplete == true)
+    {
+        if (LevelCompleteTimer < -100)
+        {
+            LevelComplete = false;
+            LevelStarted = false;
+            LevelStartTimer = LevelStartTimerLength;
+        }
+        if (mouse_check_button_pressed(mb_left))
+        {
+            controller_place_zombie(mouse_x, mouse_y);
+        }
+        else if (mouse_check_button(mb_left) && LastPlacedZombieX >= 0)
+        {
+            var distance = 33;
+            while (point_distance(LastPlacedZombieX, LastPlacedZombieY, mouse_x, mouse_y) >= distance)
+            {
+                var x0 = LastPlacedZombieX;
+                var y0 = LastPlacedZombieY;
+                var dir = point_direction(x0, y0, mouse_x, mouse_y);
+                controller_place_zombie(x0 + lengthdir_x(distance, dir), y0 + lengthdir_y(distance, dir));
+            }
+        }
+    }
+    
     LevelStartTimer--;
+    GameOverTimer--;
+    LevelCompleteTimer--;
 }

@@ -12,27 +12,50 @@
     <sprite>sprites\sprite3</sprite>
     <sprite>sprites\sp_bomb</sprite>
     <sprite>sprites\sp_zombie_hurt</sprite>
+    <sprite>sprites\sp_zombie_dead</sprite>
+    <sprite>sprites\sp_hp_counter</sprite>
+    <sprite>sprites\sp_timer</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\player_create.gml</script>
-    <script>scripts\controller_step.gml</script>
-    <script>scripts\controller_init.gml</script>
-    <script>scripts\zombie_create.gml</script>
-    <script>scripts\actor_init.gml</script>
-    <script>scripts\actor_dampen_speed.gml</script>
-    <script>scripts\actor_get_collisions.gml</script>
-    <script>scripts\controller_move_actors.gml</script>
-    <script>scripts\bomb_create.gml</script>
-    <script>scripts\bomb_step.gml</script>
-    <script>scripts\player_draw.gml</script>
-    <script>scripts\player_throw_pos.gml</script>
-    <script>scripts\controller_draw.gml</script>
-    <script>scripts\controller_update_bombs.gml</script>
-    <script>scripts\controller_update_zombies.gml</script>
-    <script>scripts\zombie_draw.gml</script>
+    <scripts name="player">
+      <script>scripts\player_create.gml</script>
+      <script>scripts\player_step.gml</script>
+      <script>scripts\player_draw.gml</script>
+      <script>scripts\player_throw_pos.gml</script>
+    </scripts>
+    <scripts name="zombie">
+      <script>scripts\zombie_create.gml</script>
+      <script>scripts\zombie_draw.gml</script>
+    </scripts>
+    <scripts name="actor">
+      <script>scripts\actor_dampen_speed.gml</script>
+      <script>scripts\actor_get_collisions.gml</script>
+      <script>scripts\actor_init.gml</script>
+      <script>scripts\actor_set_pos.gml</script>
+    </scripts>
+    <scripts name="bomb">
+      <script>scripts\bomb_create.gml</script>
+      <script>scripts\bomb_step.gml</script>
+    </scripts>
+    <scripts name="controller">
+      <script>scripts\controller_init.gml</script>
+      <script>scripts\controller_step.gml</script>
+      <script>scripts\controller_draw.gml</script>
+      <script>scripts\controller_draw_hud.gml</script>
+      <script>scripts\controller_update_bombs.gml</script>
+      <script>scripts\controller_move_actors.gml</script>
+      <script>scripts\controller_update_zombies.gml</script>
+    </scripts>
+    <script>scripts\controller_set_player_hp.gml</script>
+    <script>scripts\controller_is_level_complete.gml</script>
+    <script>scripts\controller_set_zombie_hp.gml</script>
+    <script>scripts\controller_place_zombie.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fn_default</font>
+  </fonts>
   <objects name="objects">
     <object>objects\ob_player</object>
     <object>objects\ob_controller</object>
